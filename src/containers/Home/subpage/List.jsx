@@ -1,7 +1,11 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
+
 import HomeAd from '../../../components/HomeAd'
+import ListComponent from '../../../components/List'
 import { getListData } from '../../../fetch/home/home'
+
+import './style.less'
 
 class List extends React.Component {
 
@@ -9,11 +13,12 @@ class List extends React.Component {
     super(props, context);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);    
     this.state = {
-      data: [],
-      hasMore: false
+      data: [],               // 存储列表信息
+      hasMore: false,         // 记录当前状态下还有没有更多数据提供加载
+      isLoadingMore: false,   // 记录当前状态下，是加载中... 还是点击加载更多 
+      page: 1                 // 记录下一页的页码，首页是0
     }
   }
-
 
   /**   
    * 该方法用于获取首页数据
@@ -24,6 +29,20 @@ class List extends React.Component {
 
     // console.log('获取首屏数据 result, ', result)
     this.resultHandle(result)
+  }
+  
+  /**   
+   * 该方法用于 加载更多数据
+   */
+  loadMoreData() {
+    const cityName = this.props.cityName
+    const page = this.state.page
+
+    // 记录状态
+    this.setState({
+      isLoadingMore: true
+    })
+
   }
 
   /**   
@@ -36,8 +55,10 @@ class List extends React.Component {
       // console.log('-------------------------');
       // console.log('result -> json, ', json);
       // console.log('-------------------------');
+
       const hasMore = json.hasMore
       const data = json.data
+
       // 存储数据
       this.setState({
         hasMore: hasMore,
@@ -49,9 +70,12 @@ class List extends React.Component {
   render() {
     return (
       <div>
-        我是list, {this.props.cityName}
-        <div className="">{this.state.hasMore.toString()}</div>
-        <div className="">{this.state.data.toString()}</div>
+        <h2 className="home-list-title">猜你喜欢</h2>
+        {
+          this.state.data.length 
+          ? <ListComponent data={this.state.data} /> 
+          : <div>加载中...</div> 
+        }
       </div>
     )
   }

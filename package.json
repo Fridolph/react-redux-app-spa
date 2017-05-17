@@ -4,7 +4,7 @@
   "description": "my program for learning react + redux",
   "main": "index.js",
   "scripts": {
-    "start": "set NODE_ENV=dev && webpack-dev-server --progress --colors --port 8081",
+    "start": "set NODE_ENV=dev && webpack-dev-server --progress --colors --port 8080",
     "build": "rm -rf ./build && NODE_ENV=production webpack --config ./webpack.production.config.js --progress --colors",
     "mock": "node ./mock/server.js"
   },
@@ -54,7 +54,7 @@
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.7.0",
-    "react-swipe": "^5.0.5",
+    "react-swipe": "^5.0.8",
     "redux": "^3.5.2",
     "swipe-js-iso": "^2.0.3",
     "whatwg-fetch": "^1.1.1"

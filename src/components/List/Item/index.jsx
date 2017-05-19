@@ -4,10 +4,12 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import './style.less'
 
 class ListItem extends Component {
+  
   constructor(props, context) {
     super(props, context);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
+
   render() {
     const data = this.props.data
     return (
@@ -31,6 +33,7 @@ class ListItem extends Component {
       </div>
     )
   }
+  
 }
 
 export default ListItem

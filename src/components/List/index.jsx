@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import Item from './Item'
 
 import './style.less'
 
-class List extends React.Component {
+class List extends Component {
   
   constructor(props, context) {
     super(props, context);

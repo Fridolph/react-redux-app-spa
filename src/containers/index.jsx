@@ -43,8 +43,8 @@ class App extends Component {
       cityName: cityName
     })
 
-    console.log('-----------------------------')
-    console.log(`cityName, ${cityName}`)
+    console.log('----------cityName-----------')
+    console.log(cityName)
     console.log('-----------------------------')
 
     this.setState({

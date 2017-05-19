@@ -14,7 +14,7 @@ import RouteMap from './router/routeMap'
 
 render(
   <Provider store={store}>
-    <RouteMap history={hashHistory}/>
+    <RouteMap history={hashHistory} />
   </Provider>,
   document.getElementById('root')
 )

@@ -8,6 +8,7 @@ import LoadMore from '../../../components/LoadMore'
 import './style.less'
 
 class Comment extends React.Component {
+  
   constructor(props, context) {
     super(props, context);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);

@@ -12,7 +12,11 @@ class List extends Component {
   }
 
   render() {
-    const data = this.props.data
+    let data = this.props.data
+
+    // console.log('-------data----------');
+    // console.log(this.props.data);
+    // console.log('-------data----------');
 
     return (
       <div className="list-container">

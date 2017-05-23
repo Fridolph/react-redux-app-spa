@@ -46,6 +46,7 @@ router.get('/api/search/:page/:city/:category/:keyword', function *(next) {
 
     this.body = searchListData
 })
+
 // 搜索结果页 - 搜索结果 - 两个参数
 router.get('/api/search/:page/:city/:category', function *(next) {
     // 参数
@@ -60,6 +61,7 @@ router.get('/api/search/:page/:city/:category', function *(next) {
 
     this.body = searchListData
 })
+
 // 详情页 - 商户信息
 const detailInfo = require('./detail/info')
 router.get('/api/detail/info/:id', function *(next) {
@@ -71,6 +73,7 @@ router.get('/api/detail/info/:id', function *(next) {
     console.log('商户id: ' + id)
     this.body = detailInfo
 })
+
 //详情页 - 用户评论
 const detailComment = require('./detail/comment')
 router.get('/api/detail/comment/:page/:id', function *(next) {
@@ -84,7 +87,19 @@ router.get('/api/detail/comment/:page/:id', function *(next) {
     console.log('当前页数: ' + page)
 
     this.body = detailComment
-}) 
+})
+
+// 订单列表
+const orderList = require('./orderlist/orderlist')
+router.get('/api/orderlist/:username', function *(next) {
+    console.log('订单列表')
+
+    let params = this.params
+    let username = params.username
+
+    console.log('用户名: ', username);    
+    this.body = orderList
+})
 
 // 开始服务并生成路由
 app.use(router.routes())

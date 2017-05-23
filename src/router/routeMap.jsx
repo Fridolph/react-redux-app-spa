@@ -20,6 +20,7 @@ class RouterMap extends Component {
       <Router history={this.props.history}>
         <Route path='/' component={App}>
           <IndexRoute component={Home} />
+          <Route path='/home' component={Home} />
           <Route path="/Login(/:router)" component={Login} />
           <Route path='/city' component={City} />
           <Route path='/User' component={User} />

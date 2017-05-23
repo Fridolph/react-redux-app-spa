@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-import { getOrderListData } from '../../../fetch/user/orderlist'
+import { getOrderListData, postComment } from '../../../fetch/user/orderlist'
 import { Link } from 'react-router'
 
 import OrderListComponent from '../../../components/OrderList'
@@ -23,13 +23,34 @@ class OrderList extends Component {
    */
   loadOrderList(username) {
     const result = getOrderListData(username)
+    result.then(res => {
+      return res.json()
+    }).then(json => {
+      // 获取数据
+      this.setState({
+          data: json
+      })
+    }).catch(ex => {
+      if (__DEV__) {
+          console.error('用户主页“订单列表”获取数据报错, ', ex.message)
+      }
+    })
+  }
+
+  /**
+   * submitComment 提交评价
+   * 传参 用户id, 输入内容value, 回调callback
+   */
+  submitComment(id, value, callback) {
+    const result = postComment(id, value)
 
     result.then(res => {
       return res.json()
     }).then(json => {
-      this.setState({
-        data: json
-      })
+      if (json.errno === 0) {
+        // 已经评价，修改状态
+        callback()
+      }
     })
   }
 
@@ -40,7 +61,10 @@ class OrderList extends Component {
         <h2>您的订单</h2>
         {
           this.state.data.length ? 
-            <OrderListComponent data={this.state.data} /> :
+            <OrderListComponent 
+              data={this.state.data} 
+              submitComment={this.submitComment.bind(this)}
+            /> :
             <div className="no-order">
               您还没有订单，
               <Link to="/">去首页逛逛吧</Link>

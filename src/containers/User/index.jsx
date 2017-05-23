@@ -16,11 +16,10 @@ class User extends React.Component {
 
   render() {
     let userinfo = this.props.userinfo
-
-    console.log('-----------------------------');
-    console.log('username: ', userinfo.username);
-    console.log('cityName: ', userinfo.cityName);
-    console.log('-----------------------------');
+    // console.log('-----------------------------');
+    // console.log('username: ', userinfo.username);
+    // console.log('cityName: ', userinfo.cityName);
+    // console.log('-----------------------------');
 
     return (
       <div>

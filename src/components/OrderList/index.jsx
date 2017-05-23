@@ -14,13 +14,21 @@ class OrderList extends Component {
 
   render() {
     let data = this.props.data
+    let submitComment = this.props.submitComment 
+    // console.log('---------------------');
+    // console.log('data',data);
+    // console.log('---------------------');
 
     return (
       <div>
         {
           data.map((item, index) => {
             return (
-              <Item key={index} data={item} />
+              <Item 
+                key={index} 
+                data={item} 
+                submitComment={submitComment}
+              />
             )
           })
         }
